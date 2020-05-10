@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import List from './List';
-import ListItem from './ListItem';
+import List from 'components/List';
+import ListItem from 'components/ListItem';
 
 function Nav() {
     return (

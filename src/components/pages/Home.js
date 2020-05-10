@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import List from './../List';
-import ListItem from './../ListItem';
-import Section from './../Section';
+import List from 'components/List';
+import ListItem from 'components/ListItem';
+import Section from 'components/Section';
 
 function Home() {
 

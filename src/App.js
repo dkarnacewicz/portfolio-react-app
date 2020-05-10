@@ -1,9 +1,9 @@
 import React from "react";
-import "./assets/styles/App.scss";
-import Nav from './components/Nav';
-import Home from './components/pages/Home';
-import About from './components/pages/About';
-import Contact from './components/pages/Contact';
+import "assets/styles/App.scss";
+import Nav from 'components/Nav';
+import Home from 'components/pages/Home';
+import About from 'components/pages/About';
+import Contact from 'components/pages/Contact';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
