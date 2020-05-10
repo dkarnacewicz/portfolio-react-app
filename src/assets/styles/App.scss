@@ -1,0 +1,6 @@
+@import '_variables.scss';
+
+.app {
+	padding: $space*2;
+	background-color: map-get($colors, light);
+}
