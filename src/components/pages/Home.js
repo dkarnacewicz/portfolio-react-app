@@ -1,40 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import Section from 'components/Section';
+import { connect } from "react-redux";
+import { fetchTodoList } from "actions/todoListActions";
 
-function Home() {
-
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
-    const [items, setItems] = useState([]);
-
-    const fetchItems = async () => {
-        const response = await fetch(
-            'https://api-nodejs-todolist.herokuapp.com/task',
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY'
-                },
-            }
-        );
-        const items = await response.json();
-        setItems(items.data);
+class Home extends React.Component {
+    componentDidMount() {
+        this.props.dispatch(fetchTodoList());
     }
 
-    return (
-        <Section>
-            <h1>Home</h1>
-            <List>
-                {items.map(item => (
-                    <ListItem key={item._id} text={item.description} />
-                ))}
-            </List>
-        </Section>
-    )
+    render() {
+        const { error, loading, data } = this.props;
+
+        if (error) {
+            return <div>Error! {error.message}</div>;
+        }
+      
+        if (loading) {
+            return <div>Loading...</div>;
+        }
+
+        return (
+            <Section>
+                <h1>Home</h1>
+                <List>
+                    {data.map(item => (
+                        <ListItem key={item._id} text={item.description} />
+                    ))}
+                </List>
+            </Section>
+        );
+    }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    data: state.todoList.items,
+    loading: state.todoList.loading,
+    error: state.todoList.error
+});
+  
+export default connect(mapStateToProps)(Home);

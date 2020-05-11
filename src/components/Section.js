@@ -1,11 +1,13 @@
 import React from 'react';
 
-function Section(props) {
-    return (
-        <section className="section">
-            {props.children}
-        </section>
-    )
+class Section extends React.Component {
+    render() {
+        return (
+            <section className="section">
+                {this.props.children}
+            </section>
+        );
+    }
 }
 
 export default Section;
