@@ -1,0 +1,42 @@
+@import '_variables.scss';
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: map-get($colors, primaryDark);
+	padding: $space*2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: map-get($indexes, nav);
+	transition: map-get($transitions, basicTransition);
+	box-shadow: 0 10px 5px -5px transparent;
+
+	&__logo {
+		height: 25px;
+	}
+
+	&__anchors {
+		display: flex;
+	}
+
+	&__anchor {
+		margin-right: $space*8;
+		text-decoration: none;
+		color: map-get($colors, light);
+
+		&--active {
+			color: map-get($colors, primaryLight);
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	&--fixed {
+		box-shadow: 0 10px 5px -5px map-get($colors, primaryLight);
+	}
+}

@@ -1,27 +1,57 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import List from 'components/List';
-import ListItem from 'components/ListItem';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import Img from "components/Img";
+import "assets/styles/Nav.scss";
+import logo from "assets/images/logo.png";
 
 class Nav extends React.Component {
-    render() {
-        return (
-            <nav>
-                <h3>Logo</h3>
-                <List>
-                    <ListItem>
-                        <Link to="/">Home</Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link to="/about">About</Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link to="/contact">Contact</Link>
-                    </ListItem>
-                </List>
-            </nav>
-        );
-    }
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    this.setState({
+      fixed: window.scrollY > 0
+    });
+  }
+
+  render() {
+    return (
+      <nav className={"nav" + (this.state && this.state.fixed ? ' nav--fixed' : '')}>
+        <NavLink exact to="/">
+          <Img src={logo} alt="" className="nav__logo" />
+        </NavLink>
+        <div className="nav__anchors">
+          <NavLink
+            exact
+            to="/"
+            className="nav__anchor"
+            activeClassName="nav__anchor--active"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className="nav__anchor"
+            activeClassName="nav__anchor--active"
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className="nav__anchor"
+            activeClassName="nav__anchor--active"
+          >
+            Contact
+          </NavLink>
+        </div>
+      </nav>
+    );
+  }
 }
 
 export default Nav;

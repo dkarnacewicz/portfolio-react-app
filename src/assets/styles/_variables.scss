@@ -1,6 +1,19 @@
 $colors: (
     light: #f5f5f5,
     dark: #050505,
+    gray: #777,
+    lightGray: #dddd,
+    primaryDark: rgb(37, 54, 41),
+    primary: rgb(73, 101, 77),
+    primaryLight: rgb(139, 169, 137),
 );
 
 $space: 8px;
+
+$indexes: (
+    nav: 999
+);
+
+$transitions: (
+    basicTransition: 0.3s
+)

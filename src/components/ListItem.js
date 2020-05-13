@@ -1,4 +1,5 @@
 import React from 'react';
+import 'assets/styles/components/ListItem.scss';
 
 class ListItem extends React.Component {
     render() {
@@ -7,6 +8,7 @@ class ListItem extends React.Component {
         return (
             <li className="list__item">
                 {content}
+                {this.props.children}
             </li>
         );
     }

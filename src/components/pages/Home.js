@@ -14,11 +14,11 @@ class Home extends React.Component {
         const { error, loading, data } = this.props;
 
         if (error) {
-            return <div>Error! {error.message}</div>;
+            return <Section>Error! {error.message}</Section>;
         }
       
         if (loading) {
-            return <div>Loading...</div>;
+            return <Section>Trwa wczytywanie...</Section>;
         }
 
         return (
@@ -26,7 +26,13 @@ class Home extends React.Component {
                 <h1>Home</h1>
                 <List>
                     {data.map(item => (
-                        <ListItem key={item._id} text={item.description} />
+                        <ListItem key={item._id} text={item.description}>
+                            <List>
+                                {data.map(item => (
+                                    <ListItem key={item._id} text={item.description} />
+                                ))}
+                            </List>
+                        </ListItem>
                     ))}
                 </List>
             </Section>
